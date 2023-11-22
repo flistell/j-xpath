@@ -28,7 +28,11 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+    - name: Prepare staging
+      run: mkdir staging && cp target/*jar-with-dependecies.jar staging/j-xpath-full.jar
+
+    - name: Upload artifact
+      uses: action/upload-artifact@v3
+      with:
+        name: j-xpath
+        path: staging/j-xpath-full.jar
