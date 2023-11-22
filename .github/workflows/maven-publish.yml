@@ -32,7 +32,7 @@ jobs:
       run: mkdir staging && cp target/*jar-with-dependecies.jar staging/j-xpath-full.jar
 
     - name: Upload artifact
-      uses: action/upload-artifact@v3
+      uses: actions/upload-artifact@v3
       with:
         name: j-xpath
         path: staging/j-xpath-full.jar
